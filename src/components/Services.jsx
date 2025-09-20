@@ -1,0 +1,62 @@
+import React from 'react';
+import { Share2, Search, Code, Palette } from 'lucide-react';
+
+const Services = () => {
+  const services = [
+    {
+      title: 'Social Media Marketing',
+      description: 'Build your brand presence across all social platforms with engaging content and strategic campaigns.',
+      icon: <Share2 className="w-8 h-8" />,
+    },
+    {
+      title: 'Search Engine Optimization',
+      description: 'Improve your website\'s visibility and ranking on Google with our proven SEO strategies.',
+      icon: <Search className="w-8 h-8" />,
+    },
+    {
+      title: 'Web Development',
+      description: 'Create stunning, responsive websites that convert visitors into customers and drive business growth.',
+      icon: <Code className="w-8 h-8" />,
+    },
+    {
+      title: 'Brand Identity',
+      description: 'Develop a compelling brand identity that resonates with your audience and sets you apart from competitors.',
+      icon: <Palette className="w-8 h-8" />,
+    },
+  ];
+
+  return (
+    <section id="services" className="px-6 py-16 relative">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-16 animate-fadeInUp">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-6">
+            Our <span className="text-primary">Services</span>
+          </h2>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            We offer comprehensive digital marketing solutions to help your business grow and succeed online.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="bg-slate-900/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 transform hover:-translate-y-4 group border border-slate-700/50 hover:border-primary/30 animate-fadeInUp"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
+                <div className="text-primary group-hover:animate-pulse-custom">
+                  {service.icon}
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-100 mb-4 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
+              <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors duration-300">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;
