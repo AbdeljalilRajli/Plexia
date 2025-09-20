@@ -1,1 +1,9 @@
-/* This file is no longer needed as we're using TailwindCSS */
+/* Hide default cursor globally */
+* {
+  cursor: none !important;
+}
+
+/* Ensure custom cursor is always on top */
+.custom-cursor {
+  z-index: 9999 !important;
+}
