@@ -10,7 +10,9 @@ module.exports = {
         'neon-green': '#00ff88',
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        'switzer': ['Switzer', 'system-ui', 'sans-serif'],
+        'mona': ['Mona Sans', 'sans-serif'],
+        'sans': ['Switzer', 'system-ui', 'sans-serif'],
       },
     },
   },

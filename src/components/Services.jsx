@@ -29,7 +29,7 @@ const Services = () => {
     <section id="services" className="px-6 py-16 relative">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-6 font-mona">
             Our <span className="text-primary">Services</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
@@ -49,7 +49,7 @@ const Services = () => {
                   {service.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-100 mb-4 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
+              <h3 className="text-xl font-bold text-slate-100 mb-4 group-hover:text-primary transition-colors duration-300 font-mona">{service.title}</h3>
               <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors duration-300">{service.description}</p>
             </div>
           ))}

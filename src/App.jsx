@@ -48,7 +48,7 @@ function App() {
             </div>
             
             {/* Main Title */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slideInLeft drop-shadow-2xl">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slideInLeft drop-shadow-2xl font-mona">
               Digital Marketing
               <span className="block text-primary">Excellence</span>
             </h1>

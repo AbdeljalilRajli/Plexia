@@ -112,7 +112,7 @@ const Footer = () => {
 
           {/* Enhanced Social Links */}
           <div className="mb-16">
-            <h3 className="text-xl font-semibold text-slate-300 mb-8 font-sora">Connect With Us</h3>
+            <h3 className="text-xl font-semibold text-slate-300 mb-8 font-mona">Connect With Us</h3>
             <div className="flex justify-center space-x-8">
               {[
                 { name: 'Twitter', icon: 'M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z' },
@@ -133,7 +133,7 @@ const Footer = () => {
                   <svg className="w-6 h-6 text-slate-400 group-hover:text-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                     <path d={social.icon} />
                   </svg>
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-sora">
+                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-switzer">
                     {social.name}
                   </div>
                   {/* Hover glow effect */}
@@ -146,7 +146,7 @@ const Footer = () => {
           {/* Enhanced Copyright */}
           <div className="border-t border-slate-700/50 pt-12">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-slate-400 font-sora text-sm">
+              <p className="text-slate-400 font-switzer text-sm">
                 © 2025 <span className="text-primary font-semibold">Plexis</span>. All rights reserved.
               </p>
               <div className="flex items-center space-x-2 text-slate-400 text-sm">
@@ -156,7 +156,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="mt-6 text-center">
-              <p className="text-slate-500 text-xs font-sora">
+              <p className="text-slate-500 text-xs font-switzer">
                 Transforming businesses through innovative digital solutions
               </p>
             </div>

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Switzer:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,13 +11,25 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Sora', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Switzer', system-ui, sans-serif;
   background: #0f172a;
   color: #f1f5f9;
   min-height: 100vh;
   position: relative;
   cursor: none; /* Hide default cursor */
 }
+
+/* Force Mona Sans for headings */
+h1, h2, h3, h4, h5, h6,
+.font-mona {
+  font-family: 'Mona Sans', sans-serif !important;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
+/* Debug - make headings red to see if CSS is applying */
+h1 { color: red !important; }
+h2 { color: red !important; }
 
 /* Hide cursor on interactive elements */
 a, button, [role="button"] {
