@@ -36,7 +36,7 @@ const Contact = () => {
               <Mail className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-xl font-bold text-slate-100 mb-2 font-mona">Email</h3>
-            <p className="text-slate-300">hello@plexis.com</p>
+            <p className="text-slate-300">hello@plexia.com</p>
           </div>
         </div>
 

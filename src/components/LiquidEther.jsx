@@ -7,18 +7,18 @@ export default function LiquidEther({
   cursorSize = 100,
   isViscous = false,
   viscous = 30,
-  iterationsViscous = 32,
-  iterationsPoisson = 32,
-  dt = 0.014,
+  iterationsViscous = 16,
+  iterationsPoisson = 20,
+  dt = 0.016,
   BFECC = true,
-  resolution = 0.5,
+  resolution = 0.4,
   isBounce = false,
   colors = ['#33A395', '#A1D3AC', '#66C7B8'],
   style = {},
   className = '',
   autoDemo = true,
-  autoSpeed = 0.5,
-  autoIntensity = 2.2,
+  autoSpeed = 0.3,
+  autoIntensity = 1.4,
   takeoverDuration = 0.25,
   autoResumeDelay = 1000,
   autoRampDuration = 0.6
@@ -85,9 +85,10 @@ export default function LiquidEther({
       }
       init(container) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        // Cap pixel ratio to reduce GPU cost on high-DPI screens
+        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
         this.resize();
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
         this.renderer.setPixelRatio(this.pixelRatio);
@@ -750,8 +751,11 @@ export default function LiquidEther({
         this.createShaderPass();
       }
       getFloatType() {
-        const isIOS = /(iPad|iPhone|iPod)/i.test(navigator.userAgent);
-        return isIOS ? THREE.HalfFloatType : THREE.FloatType;
+        // Prefer HalfFloat when supported to halve bandwidth and improve perf
+        const caps = Common.renderer?.capabilities;
+        const supportsHalf = !!caps && (caps.isWebGL2 || caps.isWebGL1);
+        // Most modern devices support HalfFloat in WebGL2; fall back safely
+        return supportsHalf ? THREE.HalfFloatType : THREE.FloatType;
       }
       createAllFBO() {
         const type = this.getFloatType();

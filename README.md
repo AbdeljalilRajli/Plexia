@@ -1,8 +1,8 @@
-# Plexis - Digital Marketing Excellence
+# Plexia - Digital Marketing Excellence
 
 > A cutting-edge digital marketing landing page featuring interactive LiquidEther animations, glass morphism design, and advanced cursor interactions.
 
-![Plexis Banner](https://img.shields.io/badge/Plexis-Digital%20Marketing-33A395?style=for-the-badge&logo=react)
+![Plexia Banner](https://img.shields.io/badge/Plexia-Digital%20Marketing-33A395?style=for-the-badge&logo=react)
 ![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react)
 ![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.x-06B6D4?style=for-the-badge&logo=tailwindcss)
@@ -76,10 +76,10 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/AbdeljalilRajli/Plexis.git
+git clone https://github.com/AbdeljalilRajli/Plexia.git
 
 # Navigate to project directory
-cd Plexis
+cd Plexia
 
 # Install dependencies
 npm install
@@ -202,8 +202,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Built with for Digital Marketing Excellence**
+**Built for Digital Marketing Excellence**
 
-[Live Demo](https://your-demo-link.com) • [Report Bug](https://github.com/AbdeljalilRajli/Plexis/issues) • [Request Feature](https://github.com/AbdeljalilRajli/Plexis/issues)
+[Live Demo](https://your-demo-link.com) • [Report Bug](https://github.com/AbdeljalilRajli/Plexia/issues) • [Request Feature](https://github.com/AbdeljalilRajli/Plexia/issues)
 
 </div>

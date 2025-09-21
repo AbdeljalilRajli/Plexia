@@ -1,5 +1,68 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Share2, Search, Code, Palette } from 'lucide-react';
+
+const ServiceCard = ({ service, index }) => {
+  const cardRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      });
+    }
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className="relative overflow-hidden bg-slate-900/80 backdrop-blur-sm p-8 rounded-2xl border border-slate-700/50 
+        transition-all duration-500 group hover:border-primary/30"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
+        boxShadow: isHovered 
+          ? '0 20px 25px -5px rgba(34, 211, 238, 0.1), 0 10px 10px -5px rgba(34, 211, 238, 0.04)'
+          : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+      }}
+    >
+      {/* Spotlight effect */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: `radial-gradient(
+            600px circle at ${mousePosition.x}px ${mousePosition.y}px, 
+            rgba(34, 211, 238, 0.1), 
+            transparent 40%
+          )`
+        }}
+      />
+      
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col">
+        <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 
+          transition-all duration-500 group-hover:bg-primary/20 group-hover:scale-110">
+          <div className="text-primary group-hover:animate-pulse-custom">
+            {service.icon}
+          </div>
+        </div>
+        <h3 className="text-xl font-bold text-slate-100 mb-4 group-hover:text-primary 
+          transition-colors duration-300 font-mona">
+          {service.title}
+        </h3>
+        <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 
+          transition-colors duration-300">
+          {service.description}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const Services = () => {
   const services = [
@@ -39,19 +102,11 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div
+            <ServiceCard 
               key={index}
-              className="bg-slate-900/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 transform hover:-translate-y-4 group border border-slate-700/50 hover:border-primary/30 animate-fadeInUp"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
-                <div className="text-primary group-hover:animate-pulse-custom">
-                  {service.icon}
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-slate-100 mb-4 group-hover:text-primary transition-colors duration-300 font-mona">{service.title}</h3>
-              <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors duration-300">{service.description}</p>
-            </div>
+              service={service}
+              index={index}
+            />
           ))}
         </div>
       </div>

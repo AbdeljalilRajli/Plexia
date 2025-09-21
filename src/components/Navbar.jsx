@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -13,15 +13,33 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    // Wait a tick so CSS is applied before showing the navbar
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
-    <nav className="fixed top-6 left-0 right-0 z-50 animate-slideInLeft">
+    <nav className={`fixed top-6 left-0 right-0 z-50 transition-opacity duration-300 ${mounted ? 'opacity-100 animate-slideInLeft' : 'opacity-0 pointer-events-none'}`}>
       <div className="flex justify-center">
         <div className="bg-slate-900/80 backdrop-blur-2xl border border-slate-500/60 rounded-3xl px-10 py-4 shadow-2xl shadow-black/40" style={{ backdropFilter: 'blur(24px) saturate(200%)', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 50%, rgba(15, 23, 42, 0.9) 100%)' }}>
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a href="#home" className="text-2xl font-bold text-slate-100 hover:scale-105 transition-transform duration-300">
-                <span className="text-primary">Plexis</span>
+              <a href="#home" className="flex items-center hover:scale-105 transition-transform duration-300">
+                <img
+                  src="../public/plexia-logo.png"
+                  alt="Plexia - Marketing Agency"
+                  className="h-8 md:h-9 w-auto"
+                  height={36}
+                  loading="eager"
+                  decoding="async"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; const fallback = e.currentTarget.nextElementSibling; if (fallback) fallback.style.display = 'inline-block'; }}
+                />
+                <span style={{ display: 'none' }} className="text-2xl font-bold text-slate-100">
+                  <span className="text-primary">Plexia</span>
+                </span>
               </a>
             </div>
 
@@ -35,8 +53,10 @@ const Navbar = () => {
                     className="text-slate-200 hover:text-primary px-4 py-2 text-sm font-medium transition-all duration-300 relative group rounded-xl hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    {link.name}
-                    <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+                    <span className="relative inline-block overflow-hidden">
+                      {link.name}
+                      <span className="absolute -bottom-1 left-0 h-0.5 bg-primary rounded-full w-0 opacity-0 transition-all duration-300 group-hover:w-full group-hover:opacity-100"></span>
+                    </span>
                   </a>
                 ))}
               </div>

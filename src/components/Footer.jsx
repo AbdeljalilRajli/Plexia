@@ -4,7 +4,7 @@ import { Copy, Check } from 'lucide-react';
 const Footer = () => {
   const [copied, setCopied] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const email = "hello@plexis.com";
+  const email = "hello@plexia.com";
 
   const copyToClipboard = async () => {
     try {
@@ -49,8 +49,19 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto text-center">
           {/* Logo */}
           <div className="mb-8">
-            <a href="#home" className="text-4xl font-bold">
-              <span className="text-primary">Plexis</span>
+            <a href="#home" className="inline-flex items-center">
+              <img
+                src="../public/plexia-logo.png"
+                alt="Plexia - Marketing Agency"
+                className="h-10 md:h-12 w-auto"
+                height={48}
+                loading="lazy"
+                decoding="async"
+                onError={(e) => { e.currentTarget.style.display = 'none'; const fallback = e.currentTarget.nextElementSibling; if (fallback) fallback.style.display = 'inline-block'; }}
+              />
+              <span style={{ display: 'none' }} className="text-4xl font-bold text-slate-100">
+                <span className="text-primary">Plexia</span>
+              </span>
             </a>
           </div>
 
@@ -147,7 +158,7 @@ const Footer = () => {
           <div className="border-t border-slate-700/50 pt-12">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-slate-400 font-switzer text-sm">
-                © 2025 <span className="text-primary font-semibold">Plexis</span>. All rights reserved.
+                © 2025 <span className="text-primary font-semibold">Plexia</span>. All rights reserved.
               </p>
               <div className="flex items-center space-x-2 text-slate-400 text-sm">
                 <span>Crafted with</span>

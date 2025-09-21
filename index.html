@@ -2,11 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/plexia-logo.ng" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plexis - Digital Marketing Excellence</title>
+    <title>Plexia - Digital Marketing Excellence</title>
+    <!-- Fonts: preconnect and load stylesheet early to reduce flashes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Switzer:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet" />
+
+    <!-- Anti-FOUC: hide page until React + CSS are ready -->
+    <style id="anti-fouc">body{visibility:hidden;background-color:#0f172a}</style>
   </head>
   <body>
+    <!-- Loader overlay to avoid showing unstyled content -->
+    <div id="app-loader" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0f172a;z-index:99999;color:#a1d3ac;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border:3px solid rgba(161,211,172,0.25);border-top-color:#33A395;border-radius:50%;animation:spin 0.8s linear infinite"></div>
+        <div style="font-weight:600;letter-spacing:.08em;opacity:.85">Loading…</div>
+      </div>
+    </div>
+    <style>
+      @keyframes spin{to{transform:rotate(360deg)}}
+    </style>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,6 +1,62 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckCircle, Users, Award, Clock, Zap, Target, Rocket, Star } from 'lucide-react';
 
+const StatBox = ({ stat, value, isPrimary }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const boxRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (boxRef.current) {
+      const rect = boxRef.current.getBoundingClientRect();
+      setPosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      });
+    }
+  };
+
+  return (
+    <div 
+      ref={boxRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative p-6 rounded-xl transition-all duration-300 overflow-hidden
+        ${isPrimary ? 'bg-primary/5 hover:bg-primary/10' : 'bg-secondary/5 hover:bg-secondary/10'}
+        border ${isPrimary ? 'border-primary/20 hover:border-primary/40' : 'border-secondary/20 hover:border-secondary/40'}`}
+    >
+      {/* Spotlight effect */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: `radial-gradient(
+            300px circle at ${position.x}px ${position.y}px, 
+            rgba(34, 211, 238, 0.15),
+            transparent 60%
+          )`,
+          opacity: isHovered ? 1 : 0,
+          transition: 'opacity 0.3s ease'
+        }}
+      />
+      
+      <div className="flex items-center space-x-4 relative z-10">
+        <div className={`p-3 rounded-lg transition-all duration-300 ${isPrimary ? 'bg-primary/10 group-hover:bg-primary/20' : 'bg-secondary/10 group-hover:bg-secondary/20'}`}>
+          <stat.icon className={`w-6 h-6 ${stat.color} transition-transform duration-300 group-hover:scale-110`} />
+        </div>
+        <div>
+          <div className={`text-3xl font-bold ${stat.color} mb-1 transition-transform duration-300 group-hover:scale-105`}>
+            {value}{stat.suffix}
+          </div>
+          <div className="text-sm font-medium text-slate-300">
+            {stat.label}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const About = () => {
   const [activeCard, setActiveCard] = useState(0);
   const [counters, setCounters] = useState({ clients: 0, projects: 0, years: 0 });
@@ -88,7 +144,7 @@ const About = () => {
         <div className="text-center mb-16 animate-fadeInUp">
           <h2 className="text-5xl md:text-7xl font-bold text-slate-100 mb-6 font-mona">
             About <span className="text-primary relative">
-              Plexis
+              Plexia
               <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
             </span>
           </h2>
@@ -113,30 +169,21 @@ const About = () => {
               </p>
             </div>
 
-            {/* Animated Stats Grid */}
+            {/* Stats Grid with Spotlight Effect */}
             <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="group relative bg-slate-800/30 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 hover:border-primary/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
-                  style={{ 
-                    background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%)',
-                    animationDelay: `${index * 0.2}s`
-                  }}
-                >
-                  <div className="flex items-center justify-center mb-3">
-                    <stat.icon className={`w-8 h-8 ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
-                  </div>
-                  <div className={`text-3xl font-bold ${stat.color} mb-2 text-center group-hover:scale-110 transition-transform duration-300`}>
-                    {index === 0 ? counters.clients : index === 1 ? counters.projects : index === 2 ? counters.years : 98}{stat.suffix}
-                  </div>
-                  <div className="text-slate-400 text-center text-sm group-hover:text-slate-300 transition-colors duration-300">
-                    {stat.label}
-                  </div>
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
-                </div>
-              ))}
+              {stats.map((stat, index) => {
+                const value = index === 0 ? counters.clients : index === 1 ? counters.projects : index === 2 ? counters.years : 98;
+                const isPrimary = stat.color.includes('primary');
+                
+                return (
+                  <StatBox 
+                    key={index}
+                    stat={stat}
+                    value={value}
+                    isPrimary={isPrimary}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -148,15 +195,10 @@ const About = () => {
                   key={index}
                   className={`group relative bg-slate-800/40 backdrop-blur-xl border rounded-3xl p-8 transition-all duration-700 transform cursor-pointer ${
                     activeCard === index 
-                      ? 'border-primary/60 scale-105 shadow-2xl shadow-primary/20' 
-                      : 'border-slate-700/50 hover:border-primary/30 hover:scale-102'
+                      ? 'scale-105 border-primary/30 shadow-xl shadow-primary/10' 
+                      : 'scale-100 border-slate-700/50 hover:border-slate-600/50'
                   }`}
-                  style={{ 
-                    background: activeCard === index 
-                      ? 'linear-gradient(135deg, rgba(51, 163, 149, 0.1) 0%, rgba(161, 211, 172, 0.05) 100%)'
-                      : 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%)',
-                    backdropFilter: 'blur(20px) saturate(180%)'
-                  }}
+                  onMouseEnter={() => setActiveCard(index)}
                   onClick={() => setActiveCard(index)}
                 >
                   <div className="flex items-start space-x-6">

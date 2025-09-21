@@ -3,23 +3,23 @@ import React from 'react';
 const Testimonials = () => {
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      position: 'CEO, TechStart Inc.',
-      content: 'ePLAZZA transformed our digital presence completely. Our website traffic increased by 400% and our conversion rates doubled within just 3 months.',
+      name: 'Alex Morgan',
+      position: 'CMO, NexaGrowth',
+      content: 'Plexia transformed our digital marketing strategy completely. Our lead generation increased by 300% and our brand visibility skyrocketed across all platforms. Their data-driven approach is exceptional.',
       avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
     },
     {
-      name: 'Michael Chen',
-      position: 'Marketing Director, GrowthCo',
-      content: 'The team at ePLAZZA is incredibly professional and results-driven. They helped us achieve a 250% increase in social media engagement.',
+      name: 'Sarah Kim',
+      position: 'Marketing Director, BrandVista',
+      content: 'The Plexia team delivered outstanding results with our recent PPC campaigns. They increased our ROI by 180% while reducing our customer acquisition costs. Their attention to detail is unmatched.',
       avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
     },
     {
-      name: 'Emily Rodriguez',
-      position: 'Founder, Creative Studio',
-      content: 'Working with ePLAZZA was a game-changer for our business. Their creative approach and strategic thinking helped us reach new heights.',
+      name: 'James Wilson',
+      position: 'CEO, MarketMasters',
+      content: 'Working with Plexia was a game-changer for our digital transformation. Their strategic insights and innovative marketing solutions helped us dominate our niche and outperform competitors.',
       avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
     },

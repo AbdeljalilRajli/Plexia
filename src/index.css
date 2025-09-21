@@ -16,7 +16,7 @@ body {
   color: #f1f5f9;
   min-height: 100vh;
   position: relative;
-  cursor: none; /* Hide default cursor */
+  cursor: auto; /* Show default cursor */
 }
 
 /* Force Mona Sans for headings */
@@ -31,9 +31,9 @@ h1, h2, h3, h4, h5, h6,
 h1 { color: red !important; }
 h2 { color: red !important; }
 
-/* Hide cursor on interactive elements */
+/* Ensure interactive elements use their default cursor */
 a, button, [role="button"] {
-  cursor: none !important;
+  cursor: auto;
 }
 
 body::before {

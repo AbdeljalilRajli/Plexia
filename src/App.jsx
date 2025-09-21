@@ -16,20 +16,20 @@ function App() {
       <section id="home" style={{ width: '100%', height: '100vh', position: 'relative' }}>
         <LiquidEther
           colors={['#33A395', '#A1D3AC', '#66C7B8']}
-          mouseForce={25}
-          cursorSize={120}
+          mouseForce={20}
+          cursorSize={110}
           isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.6}
+          viscous={24}
+          iterationsViscous={16}
+          iterationsPoisson={20}
+          resolution={0.4}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.8}
-          autoIntensity={3.0}
-          takeoverDuration={0.3}
-          autoResumeDelay={2000}
-          autoRampDuration={0.8}
+          autoSpeed={0.3}
+          autoIntensity={1.4}
+          takeoverDuration={0.25}
+          autoResumeDelay={1500}
+          autoRampDuration={0.6}
           style={{ width: '100%', height: '100%' }}
         />
         
