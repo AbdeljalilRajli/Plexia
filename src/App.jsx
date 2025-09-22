@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import About from './components/About';
-import Services from './components/Services';
+import ModernServices from './components/ModernServices';
 import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
@@ -81,7 +81,7 @@ function App() {
         </div>
       </section>
       <About />
-      <Services />
+      <ModernServices />
       <Portfolio />
       <Testimonials />
       <Contact />
