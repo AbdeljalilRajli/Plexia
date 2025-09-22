@@ -22,8 +22,8 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-6 left-0 right-0 z-50 transition-opacity duration-300 ${mounted ? 'opacity-100 animate-slideInLeft' : 'opacity-0 pointer-events-none'}`}>
-      <div className="flex justify-center px-4">
-        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full px-6 lg:px-10 py-4 shadow-xl w-full max-w-sm lg:max-w-none lg:w-auto" style={{ backdropFilter: 'blur(20px)', background: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)' }}>
+      <div className="flex justify-center">
+        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full px-10 py-4 shadow-xl hidden lg:block" style={{ backdropFilter: 'blur(20px)', background: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)' }}>
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -61,22 +61,42 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Navbar */}
+        <div className="lg:hidden mx-4 w-full max-w-sm bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full px-6 py-4 shadow-xl" style={{ backdropFilter: 'blur(20px)', background: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)' }}>
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <a href="#home" className="flex items-center hover:scale-105 transition-transform duration-300">
+                <img
+                  src="../public/plexia-logo.png"
+                  alt="Plexia - Marketing Agency"
+                  className="h-8 md:h-9 w-auto"
+                  height={36}
+                  loading="eager"
+                  decoding="async"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; const fallback = e.currentTarget.nextElementSibling; if (fallback) fallback.style.display = 'inline-block'; }}
+                />
+                <span style={{ display: 'none' }} className="text-2xl font-bold text-slate-100">
+                  <span className="text-primary">Plexia</span>
+                </span>
+              </a>
+            </div>
 
             {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-3 rounded-xl text-white/90 hover:text-white hover:bg-white/15 hover:backdrop-blur-sm focus:outline-none transition-all duration-300 hover:shadow-lg drop-shadow-sm"
-              >
-                {isOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </button>
-            </div>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-3 rounded-xl text-white/90 hover:text-white hover:bg-white/15 hover:backdrop-blur-sm focus:outline-none transition-all duration-300 hover:shadow-lg drop-shadow-sm"
+            >
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </button>
           </div>
-
         </div>
       </div>
 
