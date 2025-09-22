@@ -22,8 +22,8 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-6 left-0 right-0 z-50 transition-opacity duration-300 ${mounted ? 'opacity-100 animate-slideInLeft' : 'opacity-0 pointer-events-none'}`}>
-      <div className="flex justify-center">
-        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full px-10 py-4 shadow-xl" style={{ backdropFilter: 'blur(20px)', background: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)' }}>
+      <div className="flex justify-center px-4">
+        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full px-6 lg:px-10 py-4 shadow-xl w-full max-w-sm lg:max-w-none lg:w-auto" style={{ backdropFilter: 'blur(20px)', background: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)' }}>
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -50,7 +50,7 @@ const Navbar = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-white/90 hover:text-white px-4 py-2 text-sm font-medium transition-all duration-300 relative group rounded-xl hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm"
+                    className="text-white hover:text-white px-4 py-2 text-sm font-semibold transition-all duration-300 relative group rounded-full hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <span className="relative inline-block overflow-hidden">
@@ -77,25 +77,59 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <div className="lg:hidden animate-fadeInUp mt-6 pt-6 border-t border-white/20">
-              <div className="space-y-3">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-white/90 hover:text-white block px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-white/15 hover:backdrop-blur-sm rounded-xl hover:shadow-lg drop-shadow-sm"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Modern Mobile Menu Overlay */}
+      {isOpen && (
+        <div className="lg:hidden fixed inset-0 z-40 animate-fadeInUp">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-slate-900/95 backdrop-blur-2xl"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Close Button */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-8 right-8 z-50 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          
+          {/* Menu Content */}
+          <div className="relative flex flex-col items-center justify-center h-full px-6">
+            <div className="w-full max-w-sm space-y-8">
+              {navLinks.map((link, index) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="group block text-center transform transition-all duration-500 hover:scale-105"
+                  style={{ 
+                    animationDelay: `${index * 0.1}s`,
+                    animation: 'slideInRight 0.6s ease-out forwards'
+                  }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <div className="relative inline-block">
+                    <span className="text-4xl md:text-5xl font-bold text-white/90 group-hover:text-white transition-colors duration-300 font-saira">
+                      {link.name}
+                    </span>
+                    <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
+                  </div>
+                </a>
+              ))}
+            </div>
+            
+            {/* Bottom decoration */}
+            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
