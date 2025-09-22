@@ -21,14 +21,14 @@ export function ModernServices() {
         "Build your brand presence across all platforms with engaging content and strategic campaigns that drive real results.",
       skeleton: <SkeletonOne />,
       className:
-        "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
+        "col-span-1 lg:col-span-4 border-b lg:border-r border-slate-600/60",
     },
     {
       title: "SEO & Analytics",
       description:
         "Boost your search rankings and track performance with our data-driven SEO strategies and comprehensive analytics.",
       skeleton: <SkeletonTwo />,
-      className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
+      className: "border-b col-span-1 lg:col-span-2 border-slate-600/60",
     },
     {
       title: "Brand Identity Design",
@@ -36,14 +36,14 @@ export function ModernServices() {
         "Create a memorable brand identity that resonates with your audience and sets you apart from the competition.",
       skeleton: <SkeletonThree />,
       className:
-        "col-span-1 lg:col-span-3 lg:border-r dark:border-neutral-800",
+        "col-span-1 lg:col-span-3 lg:border-r border-slate-600/60",
     },
     {
       title: "Web Development",
       description:
         "Build fast, responsive, and conversion-optimized websites that deliver exceptional user experiences across all devices.",
       skeleton: <SkeletonFour />,
-      className: "col-span-1 lg:col-span-3 border-b lg:border-none",
+      className: "col-span-1 lg:col-span-3 border-b lg:border-none border-slate-600/60",
     },
   ];
 
@@ -61,7 +61,7 @@ export function ModernServices() {
         </div>
         
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-6 mt-12 xl:border rounded-2xl border-slate-700/50 bg-slate-900/30 backdrop-blur-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-6 mt-12 xl:border rounded-2xl border-slate-600/70 bg-slate-900/30 backdrop-blur-sm">
             {features.map((feature) => (
               <FeatureCard key={feature.title} className={feature.className}>
                 <FeatureTitle>{feature.title}</FeatureTitle>
