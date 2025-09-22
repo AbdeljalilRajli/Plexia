@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import ModernServices from './components/ModernServices';
@@ -8,9 +8,12 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LiquidEther from './components/LiquidEther';
 import CustomCursor from './components/CustomCursor';
+import { useLenis } from './hooks/useLenis';
 import { Heading1 } from 'lucide-react';
 
 function App() {
+  // Initialize Lenis smooth scrolling
+  useLenis();
   return (
     <div className="App">
       <Navbar />
@@ -75,11 +78,21 @@ function App() {
           </div>
         </div>
       </section>
-      <About />
-      <ModernServices />
-      <Portfolio />
-      <Testimonials />
-      <Contact />
+      <section id="about">
+        <About />
+      </section>
+      <section id="services">
+        <ModernServices />
+      </section>
+      <section id="portfolio">
+        <Portfolio />
+      </section>
+      <section id="testimonials">
+        <Testimonials />
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
       <Footer />
       <CustomCursor />
     </div>

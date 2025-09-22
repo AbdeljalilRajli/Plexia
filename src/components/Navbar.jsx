@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-scroll';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', to: 'home' },
+    { name: 'About', to: 'about' },
+    { name: 'Services', to: 'services' },
+    { name: 'Portfolio', to: 'portfolio' },
+    { name: 'Testimonials', to: 'testimonials' },
+    { name: 'Contact', to: 'contact' },
   ];
 
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     // Wait a tick so CSS is applied before showing the navbar
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
   }, []);
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+  };
 
   return (
     <nav className={`fixed top-6 left-0 right-0 z-50 transition-opacity duration-300 ${mounted ? 'opacity-100 animate-slideInLeft' : 'opacity-0 pointer-events-none'}`}>
@@ -47,17 +54,20 @@ const Navbar = () => {
             <div className="hidden lg:block">
               <div className="ml-8 flex items-center space-x-6">
                 {navLinks.map((link, index) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-white hover:text-white px-4 py-2 text-sm font-semibold transition-all duration-300 relative group rounded-full hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm"
+                  <Link
+                    to={link.to}
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={500}
+                    className="text-white hover:text-white px-4 py-2 text-sm font-semibold transition-all duration-300 relative group rounded-full hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm cursor-pointer"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <span className="relative inline-block overflow-hidden">
                       {link.name}
                       <span className="absolute -bottom-1 left-0 h-0.5 bg-primary rounded-full w-0 opacity-0 transition-all duration-300 group-hover:w-full group-hover:opacity-100"></span>
                     </span>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -121,9 +131,13 @@ const Navbar = () => {
           <div className="relative flex flex-col items-center justify-center h-full px-6">
             <div className="w-full max-w-sm space-y-8">
               {navLinks.map((link, index) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.to}
+                  spy={true}
+                  smooth={true}
+                  offset={-80}
+                  duration={500}
                   className="group block text-center transform transition-all duration-500 hover:scale-105"
                   style={{ 
                     animationDelay: `${index * 0.1}s`,
@@ -137,7 +151,7 @@ const Navbar = () => {
                     </span>
                     <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
             

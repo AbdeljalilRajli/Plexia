@@ -6,9 +6,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
+/* Smooth scrolling with performance optimizations */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* Account for fixed header */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  will-change: scroll-position;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Disable smooth scrolling for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
