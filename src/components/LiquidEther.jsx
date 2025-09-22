@@ -88,16 +88,80 @@ export default function LiquidEther({
         // Cap pixel ratio to reduce GPU cost on high-DPI screens
         this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
         this.resize();
-        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
-        this.renderer.autoClear = false;
-        this.renderer.setClearColor(new THREE.Color(0x000000), 0);
-        this.renderer.setPixelRatio(this.pixelRatio);
-        this.renderer.setSize(this.width, this.height);
-        this.renderer.domElement.style.width = '100%';
-        this.renderer.domElement.style.height = '100%';
-        this.renderer.domElement.style.display = 'block';
+        
+        // Check for WebGL support
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        if (!gl) {
+          console.warn('WebGL not supported, falling back to CSS background');
+          this.fallback = true;
+          this.createFallback(container);
+          return;
+        }
+        
+        try {
+          this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
+          this.renderer.autoClear = false;
+          this.renderer.setClearColor(new THREE.Color(0x000000), 0);
+          this.renderer.setPixelRatio(this.pixelRatio);
+          this.renderer.setSize(this.width, this.height);
+          this.renderer.domElement.style.width = '100%';
+          this.renderer.domElement.style.height = '100%';
+          this.renderer.domElement.style.display = 'block';
+          
+          // Add WebGL context loss handling for production
+          this.renderer.domElement.addEventListener('webglcontextlost', (event) => {
+            console.warn('WebGL context lost');
+            event.preventDefault();
+          });
+          
+          this.renderer.domElement.addEventListener('webglcontextrestored', () => {
+            console.log('WebGL context restored');
+            // Reinitialize if needed
+          });
+        } catch (error) {
+          console.warn('WebGL initialization failed, falling back to CSS background:', error);
+          this.fallback = true;
+          this.createFallback(container);
+          return;
+        }
+        
         this.clock = new THREE.Clock();
         this.clock.start();
+      }
+      
+      createFallback(container) {
+        // Create a simple animated background as fallback
+        const fallbackDiv = document.createElement('div');
+        fallbackDiv.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, #33A395, #A1D3AC, #66C7B8);
+          background-size: 400% 400%;
+          animation: gradientShift 8s ease-in-out infinite;
+          opacity: 0.3;
+        `;
+        
+        // Add keyframes for the animation
+        if (!document.querySelector('#liquid-ether-fallback-styles')) {
+          const style = document.createElement('style');
+          style.id = 'liquid-ether-fallback-styles';
+          style.textContent = `
+            @keyframes gradientShift {
+              0% { background-position: 0% 50%; }
+              50% { background-position: 100% 50%; }
+              100% { background-position: 0% 50%; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        container.appendChild(fallbackDiv);
+        this.fallbackElement = fallbackDiv;
       }
       resize() {
         if (!this.container) return;
@@ -941,7 +1005,9 @@ export default function LiquidEther({
         this.props.$wrapper.prepend(Common.renderer.domElement);
         this.output = new Output();
         // Ensure canvas is immediately visible
-        Common.renderer.domElement.style.opacity = '1';
+        if (Common.renderer.domElement) {
+          Common.renderer.domElement.style.opacity = '1';
+        }
       }
       resize() {
         Common.resize();
@@ -951,7 +1017,9 @@ export default function LiquidEther({
         if (this.autoDriver) this.autoDriver.update();
         Mouse.update();
         Common.update();
-        this.output.update();
+        if (!this.fallback) {
+          this.output.update();
+        }
       }
       loop() {
         if (!this.running) return; // safety
@@ -979,6 +1047,10 @@ export default function LiquidEther({
             const canvas = Common.renderer.domElement;
             if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
             Common.renderer.dispose();
+          }
+          // Clean up fallback element if it exists
+          if (this.fallback && this.fallbackElement && this.fallbackElement.parentNode) {
+            this.fallbackElement.parentNode.removeChild(this.fallbackElement);
           }
         } catch (e) {
           void 0;

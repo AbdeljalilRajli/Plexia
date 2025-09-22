@@ -28,7 +28,7 @@ function App() {
           autoSpeed={0.4}
           autoIntensity={1.8}
           takeoverDuration={0.25}
-          autoResumeDelay={500}
+          autoResumeDelay={502}
           autoRampDuration={0.3}
           style={{ width: '100%', height: '100%' }}
         />
