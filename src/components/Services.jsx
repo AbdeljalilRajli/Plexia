@@ -92,8 +92,8 @@ const Services = () => {
     <section id="services" className="px-6 py-16 relative">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-6 font-orbitron">
-            Our <span className="text-primary">Services</span>
+          <h2 className="text-5xl md:text-7xl font-bold text-slate-100 mb-6 font-orbitron">
+            Our <span className="text-primary relative">Services</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             We offer comprehensive digital marketing solutions to help your business grow and succeed online.

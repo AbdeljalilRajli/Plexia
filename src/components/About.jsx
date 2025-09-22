@@ -170,7 +170,7 @@ const About = () => {
             </div>
 
             {/* Stats Grid with Spotlight Effect */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {stats.map((stat, index) => {
                 const value = index === 0 ? counters.clients : index === 1 ? counters.projects : index === 2 ? counters.years : 98;
                 const isPrimary = stat.color.includes('primary');
