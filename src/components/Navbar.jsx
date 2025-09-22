@@ -35,7 +35,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <a href="#home" className="flex items-center hover:scale-105 transition-transform duration-300">
                 <img
-                  src="../public/plexia-logo.png"
+                  src="/plexia-logo.png"
                   alt="Plexia - Marketing Agency"
                   className="h-8 md:h-9 w-auto"
                   height={36}
@@ -76,7 +76,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <a href="#home" className="flex items-center hover:scale-105 transition-transform duration-300">
                 <img
-                  src="../public/plexia-logo.png"
+                  src="/plexia-logo.png"
                   alt="Plexia - Marketing Agency"
                   className="h-8 md:h-9 w-auto"
                   height={36}
