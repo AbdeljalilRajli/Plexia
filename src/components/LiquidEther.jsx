@@ -940,6 +940,8 @@ export default function LiquidEther({
       init() {
         this.props.$wrapper.prepend(Common.renderer.domElement);
         this.output = new Output();
+        // Ensure canvas is immediately visible
+        Common.renderer.domElement.style.opacity = '1';
       }
       resize() {
         Common.resize();
@@ -1022,19 +1024,22 @@ export default function LiquidEther({
     };
     applyOptionsFromProps();
 
+    // Start animation immediately
     webgl.start();
+    isVisibleRef.current = true;
 
-    // IntersectionObserver to pause rendering when not visible
+    // IntersectionObserver to pause rendering when not visible (but don't wait for it to start)
     const io = new IntersectionObserver(
       entries => {
         const entry = entries[0];
         const isVisible = entry.isIntersecting && entry.intersectionRatio > 0;
         isVisibleRef.current = isVisible;
         if (!webglRef.current) return;
-        if (isVisible && !document.hidden) {
-          webglRef.current.start();
-        } else {
+        // Only pause when not visible, don't wait to start
+        if (!isVisible || document.hidden) {
           webglRef.current.pause();
+        } else if (!webglRef.current.running) {
+          webglRef.current.start();
         }
       },
       { threshold: [0, 0.01, 0.1] }

@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-6 left-0 right-0 z-50 transition-opacity duration-300 ${mounted ? 'opacity-100 animate-slideInLeft' : 'opacity-0 pointer-events-none'}`}>
       <div className="flex justify-center">
-        <div className="bg-slate-900/80 backdrop-blur-2xl border border-slate-500/60 rounded-3xl px-10 py-4 shadow-2xl shadow-black/40" style={{ backdropFilter: 'blur(24px) saturate(200%)', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 50%, rgba(15, 23, 42, 0.9) 100%)' }}>
+        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full px-10 py-4 shadow-xl" style={{ backdropFilter: 'blur(20px)', background: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)' }}>
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -50,7 +50,7 @@ const Navbar = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-slate-200 hover:text-primary px-4 py-2 text-sm font-medium transition-all duration-300 relative group rounded-xl hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg"
+                    className="text-white/90 hover:text-white px-4 py-2 text-sm font-medium transition-all duration-300 relative group rounded-xl hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <span className="relative inline-block overflow-hidden">
@@ -66,7 +66,7 @@ const Navbar = () => {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-3 rounded-xl text-slate-200 hover:text-primary hover:bg-white/10 hover:backdrop-blur-sm focus:outline-none transition-all duration-300 hover:shadow-lg"
+                className="inline-flex items-center justify-center p-3 rounded-xl text-white/90 hover:text-white hover:bg-white/15 hover:backdrop-blur-sm focus:outline-none transition-all duration-300 hover:shadow-lg drop-shadow-sm"
               >
                 {isOpen ? (
                   <X className="h-5 w-5" />
@@ -79,13 +79,13 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           {isOpen && (
-            <div className="lg:hidden animate-fadeInUp mt-6 pt-6 border-t border-slate-600/40">
+            <div className="lg:hidden animate-fadeInUp mt-6 pt-6 border-t border-white/20">
               <div className="space-y-3">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-slate-200 hover:text-primary block px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:backdrop-blur-sm rounded-xl hover:shadow-lg"
+                    className="text-white/90 hover:text-white block px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-white/15 hover:backdrop-blur-sm rounded-xl hover:shadow-lg drop-shadow-sm"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}

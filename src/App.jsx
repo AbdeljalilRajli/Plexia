@@ -16,20 +16,20 @@ function App() {
       <section id="home" style={{ width: '100%', height: '100vh', position: 'relative' }}>
         <LiquidEther
           colors={['#33A395', '#A1D3AC', '#66C7B8']}
-          mouseForce={20}
-          cursorSize={110}
+          mouseForce={25}
+          cursorSize={150}
           isViscous={false}
           viscous={24}
           iterationsViscous={16}
           iterationsPoisson={20}
-          resolution={0.4}
+          resolution={0.6}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.3}
-          autoIntensity={1.4}
+          autoSpeed={0.4}
+          autoIntensity={1.8}
           takeoverDuration={0.25}
-          autoResumeDelay={1500}
-          autoRampDuration={0.6}
+          autoResumeDelay={500}
+          autoRampDuration={0.3}
           style={{ width: '100%', height: '100%' }}
         />
         
@@ -48,9 +48,9 @@ function App() {
             </div>
             
             {/* Main Title */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slideInLeft drop-shadow-2xl font-mona">
-              Digital Marketing
-              <span className="block text-primary">Excellence</span>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slideInLeft drop-shadow-2xl font-orbitron">
+              PLEXIA
+              <span className="block text-primary font-saira font-light text-4xl md:text-5xl mt-2">Digital Marketing Agency</span>
             </h1>
             
             {/* Subtitle */}

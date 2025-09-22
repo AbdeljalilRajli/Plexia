@@ -142,7 +142,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="text-5xl md:text-7xl font-bold text-slate-100 mb-6 font-mona">
+          <h2 className="text-5xl md:text-7xl font-bold text-slate-100 mb-6 font-orbitron">
             About <span className="text-primary relative">
               Plexia
               <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
@@ -210,7 +210,7 @@ const About = () => {
                       }`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 font-mona ${
+                      <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 font-orbitron ${
                         activeCard === index ? 'text-primary' : 'text-slate-100 group-hover:text-primary'
                       }`}>
                         {feature.title}
