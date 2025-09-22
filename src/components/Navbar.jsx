@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Services', id: 'services' },
-    { name: 'Portfolio', id: 'portfolio' },
-    { name: 'Testimonials', id: 'testimonials' },
-    { name: 'Contact', id: 'contact' },
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Contact', href: '#contact' },
   ];
-
-  const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
 
   const [mounted, setMounted] = useState(false);
 
@@ -64,12 +54,8 @@ const Navbar = () => {
               <div className="ml-8 flex items-center space-x-6">
                 {navLinks.map((link, index) => (
                   <a
-                    href={`#${link.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollTo(link.id);
-                    }}
-                    className="text-white hover:text-white px-4 py-2 text-sm font-semibold transition-all duration-300 relative group rounded-full hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm cursor-pointer"
+                    href={link.href}
+                    className="text-white hover:text-white px-4 py-2 text-sm font-semibold transition-all duration-300 relative group rounded-full hover:bg-white/15 hover:backdrop-blur-sm hover:shadow-lg drop-shadow-sm"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <span className="relative inline-block overflow-hidden">
@@ -142,17 +128,13 @@ const Navbar = () => {
               {navLinks.map((link, index) => (
                 <a
                   key={link.name}
-                  href={`#${link.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(link.id);
-                    setIsOpen(false);
-                  }}
+                  href={link.href}
                   className="group block text-center transform transition-all duration-500 hover:scale-105"
                   style={{ 
                     animationDelay: `${index * 0.1}s`,
                     animation: 'slideInRight 0.6s ease-out forwards'
                   }}
+                  onClick={() => setIsOpen(false)}
                 >
                   <div className="relative inline-block">
                     <span className="text-4xl md:text-5xl font-bold text-white/90 group-hover:text-white transition-colors duration-300 font-saira">
