@@ -60,5 +60,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 <div align="center">
   <p><strong>Built with ❤️ for Digital Marketing Excellence</strong></p>
   
-  [🌐 Live Demo](https://your-demo-link.com) • [🐛 Report Bug](https://github.com/AbdeljalilRajli/Plexia/issues) • [✨ Request Feature](https://github.com/AbdeljalilRajli/Plexia/issues)
+  [🌐 Live Demo](https://plexia-agency.vercel.app/) • [🐛 Report Bug](https://github.com/AbdeljalilRajli/Plexia/issues) • [✨ Request Feature](https://github.com/AbdeljalilRajli/Plexia/issues)
 </div>
